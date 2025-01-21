@@ -1,0 +1,21 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /vcard/
+
+# Redirecionar todas as requisições para index.php se o arquivo não existir
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
+
+# Definir o tipo de arquivo a ser servido
+AddType application/x-httpd-php .php
+
+# Impedir o acesso direto a arquivos PHP
+<Files "*.php">
+  Deny from all
+</Files>
+</IfModule>
+
+# END WordPress
